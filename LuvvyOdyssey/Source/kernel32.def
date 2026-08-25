@@ -1,0 +1,21 @@
+LIBRARY kernel32.dll
+EXPORTS
+ CreateThread=KERNELBASE.CreateThread
+ LoadLibraryW=KERNELBASE.LoadLibraryW
+ DisableThreadLibraryCalls=KERNELBASE.DisableThreadLibraryCalls
+ GetLastError=KERNELBASE.GetLastError
+ CreateFileW=KERNELBASE.CreateFileW
+ WriteFile=KERNELBASE.WriteFile
+ CloseHandle=KERNELBASE.CloseHandle
+ SetFilePointer=KERNELBASE.SetFilePointer
+ GetModuleFileNameW=KERNELBASE.GetModuleFileNameW
+ GetModuleHandleW=KERNELBASE.GetModuleHandleW
+ GetCurrentProcessId=KERNELBASE.GetCurrentProcessId
+ GetCurrentProcess=KERNELBASE.GetCurrentProcess
+ Sleep=KERNELBASE.Sleep
+ VirtualProtect=KERNELBASE.VirtualProtect
+ VirtualAlloc=KERNELBASE.VirtualAlloc
+ VirtualFree=KERNELBASE.VirtualFree
+ FlushInstructionCache=KERNELBASE.FlushInstructionCache
+
+ ExitProcess=KERNELBASE.ExitProcess

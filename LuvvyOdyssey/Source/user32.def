@@ -1,0 +1,23 @@
+LIBRARY user32.dll
+EXPORTS
+ EnumWindows=user32.EnumWindows
+ GetWindowThreadProcessId=user32.GetWindowThreadProcessId
+ IsWindowVisible=user32.IsWindowVisible
+ GetWindowRect=user32.GetWindowRect
+ RegisterClassExW=user32.RegisterClassExW
+ CreateWindowExW=user32.CreateWindowExW
+ DefWindowProcW=user32.DefWindowProcW
+ ShowWindow=user32.ShowWindow
+ UpdateWindow=user32.UpdateWindow
+ SetWindowPos=user32.SetWindowPos
+ GetAsyncKeyState=user32.GetAsyncKeyState
+ InvalidateRect=user32.InvalidateRect
+ BeginPaint=user32.BeginPaint
+ EndPaint=user32.EndPaint
+ FillRect=user32.FillRect
+ DrawTextW=user32.DrawTextW
+ SetLayeredWindowAttributes=user32.SetLayeredWindowAttributes
+ PeekMessageW=user32.PeekMessageW
+ TranslateMessage=user32.TranslateMessage
+ DispatchMessageW=user32.DispatchMessageW
+ DestroyWindow=user32.DestroyWindow

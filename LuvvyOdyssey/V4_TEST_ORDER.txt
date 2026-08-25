@@ -1,0 +1,53 @@
+V4.1 runtime test order
+
+The v3 startup and F10 core are frozen. Test new/repaired modules one at a time.
+
+1. One Hit Kill
+   Turn on, hit a normal enemy once, turn off, hit another enemy normally.
+
+2. No Ability Cooldown v2
+   Use an ability that normally shows a cooldown. Toggle on and use it repeatedly. Toggle off and confirm normal cooldown returns.
+
+3. Infinite Ability Points v2
+   Note current points. Toggle on, spend one point, confirm the total does not decrease or increases as expected. Toggle off before testing unrelated inventory actions.
+
+4. Stealth / Undetected
+   Approach an enemy without attacking. Attacking can still cause detection.
+
+5. Infinite Materials + Drachmae + Arrows
+   Toggle on. If values do not visibly update, buy, engrave, or upgrade once. Then inspect resources.
+
+6. No Bounty
+   Gain or already have bounty, toggle on, let the bounty value update once, confirm it clears/stays zero.
+
+7. Inventory Capacity 1000
+   Open inventory/storage and verify capacity behavior. This implementation returns 1000 to the capacity check without permanently writing 1000 into the capacity field.
+
+8. Ship God Mode + Enemy Ship One Hit Kill
+   Test only at sea. Damage your ship, then hit one enemy ship.
+
+9. Infinite Ship Stamina [EXPERIMENTAL]
+10. Infinite Felucca HP
+11. Maximum Phobos Speed
+12. Auto Climb [EXPERIMENTAL]
+13. XP Boost +8000 [EXPERIMENTAL]
+
+Waypoint teleport v4.2.2
+   Open the world map and place a new custom waypoint, or move the existing custom waypoint once.
+   Return to the game and open F10.
+   Confirm the teleport row says [WAYPOINT CAPTURED].
+   Select Teleport to Custom Map Waypoint [ACTION] and press Enter once.
+   If it says [WAITING FOR WAYPOINT], return to the map, move the custom marker, then try again.
+   Disable All restores the observer hook. After Disable All, the first teleport press reinstalls the observer; then move/place the marker and press teleport again.
+
+If one feature fails, stop testing that feature and send LuvvyExternalMenu.log plus what happened in game. Other modules can remain independently usable.
+
+
+V4.2.2 TELEPORT LIVE-TRANSFORM TEST
+1. Reach normal gameplay before arming teleport.
+2. F10 -> Teleport row -> Enter once to arm capture.
+3. Place or move a custom waypoint.
+4. Return to gameplay and confirm [WAYPOINT CAPTURED].
+5. Enter again. The row should briefly show [TELEPORTING], then the player should move to the waypoint and the temporary transform hook restores itself.
+
+If teleport still does not move the player, send only the [teleport] lines from LuvvyExternalMenu.log. A 5-second no-consume condition is logged and the temporary transform hook is restored automatically.

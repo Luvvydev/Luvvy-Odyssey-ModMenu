@@ -1,0 +1,16 @@
+LIBRARY bink2w64.dll
+EXPORTS
+ BinkDoFrame=bink2w64_original.BinkDoFrame
+ BinkGetFrameBuffersInfo=bink2w64_original.BinkGetFrameBuffersInfo
+ BinkGetSummary=bink2w64_original.BinkGetSummary
+ BinkGoto=bink2w64_original.BinkGoto
+ BinkOpen=bink2w64_original.BinkOpen
+ BinkRegisterFrameBuffers=bink2w64_original.BinkRegisterFrameBuffers
+ BinkSetIOSize=bink2w64_original.BinkSetIOSize
+ BinkSetMemory=bink2w64_original.BinkSetMemory
+ BinkSetOSFileCallbacks=bink2w64_original.BinkSetOSFileCallbacks
+ BinkSetSoundTrack=bink2w64_original.BinkSetSoundTrack
+ BinkSetSpeakerVolumes=bink2w64_original.BinkSetSpeakerVolumes
+ BinkSetVolume=bink2w64_original.BinkSetVolume
+ BinkShouldSkip=bink2w64_original.BinkShouldSkip
+ BinkWait=bink2w64_original.BinkWait

@@ -1,0 +1,23 @@
+LIBRARY kernel32.dll
+EXPORTS
+ CreateToolhelp32Snapshot=KERNEL32.CreateToolhelp32Snapshot
+ Process32FirstW=KERNEL32.Process32FirstW
+ Process32NextW=KERNEL32.Process32NextW
+ Module32FirstW=KERNEL32.Module32FirstW
+ Module32NextW=KERNEL32.Module32NextW
+ OpenProcess=KERNEL32.OpenProcess
+ GetExitCodeProcess=KERNEL32.GetExitCodeProcess
+ ReadProcessMemory=KERNEL32.ReadProcessMemory
+ WriteProcessMemory=KERNEL32.WriteProcessMemory
+ VirtualProtectEx=KERNEL32.VirtualProtectEx
+ VirtualAllocEx=KERNEL32.VirtualAllocEx
+ FlushInstructionCache=KERNEL32.FlushInstructionCache
+ GetModuleFileNameW=KERNEL32.GetModuleFileNameW
+ GetModuleHandleW=KERNEL32.GetModuleHandleW
+ GetLastError=KERNEL32.GetLastError
+ Sleep=KERNEL32.Sleep
+ CloseHandle=KERNEL32.CloseHandle
+ ExitProcess=KERNEL32.ExitProcess
+ CreateFileW=KERNEL32.CreateFileW
+ WriteFile=KERNEL32.WriteFile
+ SetFilePointer=KERNEL32.SetFilePointer

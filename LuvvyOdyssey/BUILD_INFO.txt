@@ -1,0 +1,15 @@
+Luvvy Odyssey Mod Menu v4.2.2
+Exact supported executable SHA256: ac327dad2cbbdd72a3fda8e99cbeab9d12af328363e4f09bc5674bdd36b8c483
+Architecture: PE32+ x86-64
+Active design: external F10 overlay + external memory validation/writes
+Startup gate: uplay_r1_loader64.dll present + visible ACOdyssey window >= 640x360 + same PID stable for 20 seconds
+Active Bink proxy: NONE. Original bink2w64.dll is restored before Steam launch.
+Active injected DLL: NONE
+Automatic post-startup game code change: NONE. Waypoint observer is installed only after explicit Enter on the teleport menu row.
+
+Runtime-proven frozen core: v3 external Steam/Ubisoft startup + F10 overlay
+Expanded modules: same 17 v4 toggles + explicitly armed captured waypoint teleport + Disable All
+
+
+v4.2.2 teleport-only change:
+Waypoint capture is unchanged. Teleport application now uses a temporary, reversible hook at RVA 0x183D20B, matching the supplied working CE teleport injection (0F 28 52 50 49 89 5B 08). Captured XYZ is forced into the live character transform at +0x50/+0x54/+0x58 for 30 transform updates, then the original 8 bytes are restored automatically.

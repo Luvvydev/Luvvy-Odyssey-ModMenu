@@ -1,0 +1,78 @@
+Luvvy Odyssey v4.2.2 static verification
+
+ACOdyssey.exe SHA256: ac327dad2cbbdd72a3fda8e99cbeab9d12af328363e4f09bc5674bdd36b8c483
+PE machine: 0x8664
+PE timestamp: 0x619829C8
+SizeOfImage: 0x11C75000
+
+Runtime-proven frozen core from v3:
+Steam normal launch -> Ubisoft handoff -> stable final ACOdyssey.exe -> external process attach -> F10 overlay.
+No Bink proxy and no injected mod DLL are active.
+
+v4.2 active executable:
+LuvvyOdysseyExternalMenu.exe SHA256: 97f1b88ededdb337e3de4cd731f250e645436eb8367a6bced136ef66f4c2d41c
+Launcher stub "Luvvy Odyssey.exe" SHA256: c25a40ed91002b5b90e9fb12fee0fe8318acd55f4d28eb08053b902f3a9ffca7
+
+Active external menu PE imports were inspected after linking:
+kernel32.dll
+user32.dll
+gdi32.dll
+shell32.dll
+
+No LoadLibraryW import.
+No CreateRemoteThread import.
+No DLL is loaded into ACOdyssey.exe.
+ReadProcessMemory is used for validation.
+WriteProcessMemory and VirtualProtectEx are used for ordinary cheats only after user activation.
+v4.2 additionally installs the isolated waypoint observer after the final stable game process and overlay are ready so waypoint data can be captured before the action is triggered.
+VirtualAllocEx is otherwise used only for isolated code-cave features after explicit activation.
+
+Exact signature and original-byte validation against the uploaded ACOdyssey.exe:
+God Mode                         RVA 0x22E0FEE: VERIFIED, exact signature unique
+Infinite Adrenaline             RVA 0x22D7599: VERIFIED, exact signature unique
+Infinite Oxygen                 RVA 0x35A958A: VERIFIED, exact signature unique
+No Ability Cooldown v2          RVA 0x20224A8: VERIFIED, exact signature unique
+Infinite Ability Points v2      RVA 0x24337E8: VERIFIED, parent signature unique
+Ability Points hidden child     RVA 0x24337ED: VERIFIED, original bytes 2B C2
+Remove Horse Speed Limit        RVA 0x2973BCE: VERIFIED, masked signature unique
+One Hit Kill                    RVA 0x22981D6: VERIFIED, exact signature unique
+Stealth / Undetected            RVA 0x28CC9D7: VERIFIED, exact signature unique
+Materials + Drachmae + Arrows   RVA 0x2617F94: VERIFIED, exact signature unique
+No Bounty                       RVA 0x25493EF: VERIFIED, exact signature unique
+Inventory Capacity 1000         RVA 0x28D220B: VERIFIED, exact signature unique
+Ship God + Enemy Ship 1HK       RVA 0x30E36F0: VERIFIED, exact signature unique
+Infinite Ship Stamina           RVA 0x310F49C: VERIFIED, exact signature unique
+Infinite Felucca HP             RVA 0xAD77483: VERIFIED, exact signature unique
+Maximum Phobos Speed            RVA 0x1F120F4: VERIFIED, exact signature unique
+Auto Climb                      RVA 0x3559172: VERIFIED, 20-byte signature unique
+XP Boost +8000                  RVA 0x2922715: VERIFIED, exact signature unique
+Waypoint teleport hook          RVA 0x2F30043: VERIFIED, 24-byte signature unique
+Waypoint capture auxiliary pointer offset 0xF4: retained for capture validation only; no longer used as the teleport destination
+Live character transform target    RVA 0x183D20B: VERIFIED against exact EXE and supplied CE teleport script
+Live transform original bytes      0F 28 52 50 49 89 5B 08: VERIFIED
+
+Fixes based on the user's working ACOdyssey.17.CT:
+1. One Hit Kill now uses the table's actual behavior: write enemy health/result to zero, not subtract 10000.
+2. No Ability Cooldown v2 changes the tested ability-state mask from 0x78 to 0x01 while preserving the original branch.
+3. Infinite Ability Points v2 applies both the visible parent branch patch and the hidden child arithmetic patch. v3 only applied the parent.
+
+Additional modules were ported from exact working-table behavior but remain runtime-unverified in this external implementation until tested in game.
+Experimental labels remain visible for higher-risk modules.
+
+Waypoint teleport research/validation:
+The supplied FLiNG trainer's v1.5.4 pattern resolves uniquely in this uploaded executable at RVA 0x2F30043.
+Its resolved player-location offset is 0xF4.
+v4's one-shot hook was runtime-reported as non-working. The failure mode is timing: it only started observing after the user triggered the action.
+Waypoint capture remains the v4.2 persistent observer: it first executes the original MOV RDX,[RDX+90], preserves RAX, captures the routine's stack XYZ at original RSP+0x30/+0x34/+0x38 plus the auxiliary RDX+0xF4 pointer used only as a capture sanity check, increments a capture sequence, restores RAX, and returns to the original code.
+The failed direct write to RDX+0xF4 has been removed. v4.2.2 applies the captured waypoint through the live character transform target at RVA 0x183D20B, the same target used by the supplied CE scripts whose injection is `0F 28 52 50 49 89 5B 08`. The temporary cave preserves RAX, executes the original MOVAPS, writes XYZ to [RDX+0x50/+0x54/+0x58], preserves the original MOV [R11+08], and returns to RVA 0x183D213. It forces the target for 30 transform updates, marks completion, and the external menu restores the original 8 bytes. +5.0 is applied only to captured Z before arming the one-shot transform hook.
+
+Lifecycle rules:
+Every toggle validates original bytes before first apply.
+Every byte patch is restored on toggle off and Disable All.
+Code cave allocations are retained rather than freed while the process is alive, avoiding return-into-freed-memory races.
+Ability Points restores both parent and hidden child bytes.
+Waypoint observer stays installed so waypoint changes can be captured, and Disable All / clean game exit restores the original 7 bytes.
+No active patch is intentionally left installed on clean disable while the game process is still alive.
+
+Get Item table note:
+The uploaded Get Item CE table was inspected and its working implementation uses the game's internal GetItem routine plus per-thread TLS initialization and a worker thread. It produces persistent inventory/save changes. v4.2 does not expose bulk item granting yet so that save-edit path stays isolated from the runtime-cheat release.

@@ -1,0 +1,6 @@
+LIBRARY gdi32.dll
+EXPORTS
+ SetTextColor=gdi32.SetTextColor
+ SetBkMode=gdi32.SetBkMode
+ GetStockObject=gdi32.GetStockObject
+ SelectObject=gdi32.SelectObject
