@@ -1,7 +1,5 @@
 # Luvvy Odyssey Mod Menu v4.2.2
 
-### Live Transform Teleport Fix
-
 Built only for the exact uploaded Steam `ACOdyssey.exe`.
 
 **SHA256**
