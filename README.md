@@ -42,5 +42,3 @@
 ## RESTORE
 
 Run `Restore Vanilla.bat`.
-
-It restores an older Luvvy Bink proxy if necessary, removes active Luvvy runtime payloads, and restores the renamed startup videos.
