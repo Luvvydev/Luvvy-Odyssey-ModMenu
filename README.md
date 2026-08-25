@@ -5,10 +5,7 @@
 1. Extract the ZIP directly into the Assassin's Creed Odyssey folder beside `ACOdyssey.exe`.
 2. Close the Ubisoft crash dialog and make sure `ACOdyssey.exe` is not running.
 3. Double click `Luvvy Odyssey.exe`.
-4. v4.2 restores the original Bink DLL if v1/v2 is still installed.
-5. Steam and Ubisoft Connect perform their normal launch/authentication flow.
-6. The external menu waits for the final stable game process.
-7. Press `F10` after the game is up.
+4. Press `F10` after the game is up.
 
 ## MENU KEYS
 
