@@ -1,13 +1,5 @@
 # Luvvy Odyssey Mod Menu v4.2.2
 
-Built only for the exact uploaded Steam `ACOdyssey.exe`.
-
-**SHA256**
-
-```text
-ac327dad2cbbdd72a3fda8e99cbeab9d12af328363e4f09bc5674bdd36b8c483
-```
-
 ## INSTALL / RUN
 
 1. Extract the ZIP directly into the Assassin's Creed Odyssey folder beside `ACOdyssey.exe`.
